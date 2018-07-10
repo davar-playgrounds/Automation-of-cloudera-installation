@@ -1,0 +1,7 @@
+---
+- hosts: manager
+  become: true
+  tasks:
+    - name: install cloudera manager
+      shell: sh /home/ubuntu/cloudera.sh
+      notify: cloudera manager up and running on host port 7810

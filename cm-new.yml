@@ -1,0 +1,33 @@
+---
+- hosts: manager
+  become: true
+  tasks:
+     - name: download-file
+       get_url: 
+         url: http://archive.cloudera.com/cm5/cm/5/cloudera-manager-xenial-cm5.14.1_amd64.tar.gz 
+         dest: /home/ubuntu/cloudera-manager-xenial-cm5.14.1_amd64.tar.gz
+     
+     - name: make directory
+       shell: mkdir -p /opt/cloudera       
+         
+     - name: copy to  destination 
+       unarchive: 
+         src: /home/ubuntu/cloudera-manager-xenial-cm5.14.1_amd64.tar.gz
+         dest: /opt/cloudera
+
+     - name: write Packages for Cloudera Manager, Version 5, on Ubuntu 16.04 amd64
+       file:
+         path:  "/etc/apt/sources.list.d/cloudera-manager.list"
+         state: touch
+
+     - name: copy content in file 
+       copy:
+         dest: "/etc/apt/sources.list.d/cloudera-manager.list"
+         content: deb [arch=amd64] http://archive.cloudera.com/cm5/ubuntu/xenial/amd64/cm xenial-cm5 contrib
+           deb-src http://archive.cloudera.com/cm5/ubuntu/xenial/amd64/cm xenial-cm5 contrib
+     
+#     - name: update and install cloudera manager
+#       apt: name={{items}} state=latest update-cache=yes
+#       with_items:
+#         - update
+#         - cloudera-manager-server-db-2
