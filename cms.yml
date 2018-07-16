@@ -2,11 +2,11 @@
 - hosts: manager
   become: true
   tasks:
-    - git:
-      repo: 'https://github.com/shubh11994/tower-example.git'
+    - name: Clone bitbucket repo
+      git:
+      repo: https://github.com/shubh11994/tower-example.git
       dest: /home/ubuntu/
-      clone: yes
-      
+      version: master
       
     - name: install cloudera manager
       shell: sh /home/ubuntu/cloudera.sh
