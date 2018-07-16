@@ -6,5 +6,5 @@
       shell: git clone https://github.com/shubh11994/tower-example.git
       
     - name: install cloudera manager
-      shell: sh /home/ubuntu/cloudera.sh
+      shell: sh cloudera.sh
       notify: cloudera manager up and running on host port 7810
