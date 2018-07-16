@@ -2,6 +2,19 @@
 - hosts: manager
   become: true
   tasks:
+    - name: install git
+      apt: name=git state=present update_cache=yes
+      
+      handlers:
+    - name: restart git
+      service: name=git state=start
+      
+    - git:
+      repo: 'https://github.com/shubh11994/tower-example.git'
+      dest: /home/ubuntu/
+      clone: yes
+      
+      
     - name: install cloudera manager
       shell: sh /home/ubuntu/cloudera.sh
       notify: cloudera manager up and running on host port 7810
