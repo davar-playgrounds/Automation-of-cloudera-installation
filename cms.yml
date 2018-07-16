@@ -5,11 +5,9 @@
     - name: change directory
       shell: mkdir -p /home/shubh/test
       
-    - name: change directory
-      shell: cd /home/shubh/test
-      
     - name: clone-repo
       shell: git clone https://github.com/shubh11994/tower-example.git
+      dest: /home/shubh/test
       
     - name: install cloudera manager
       shell: sh /home/shubh/test/tower-example/cloudera.sh
