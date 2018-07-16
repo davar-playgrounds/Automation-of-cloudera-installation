@@ -5,7 +5,7 @@
     - name: change directory
       shell: mkdir -p /home/shubh/test
       
-    - name change directory
+    - name: change directory
       shell: cd /home/shubh/test
       
     - name: clone-repo
